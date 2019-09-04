@@ -4,7 +4,7 @@ import { ScrollView, StyleSheet } from 'react-native';
 class Container extends React.Component {
 	render() {
 		return (
-			<ScrollView style={styles.container}>
+			<ScrollView contentContainerStyle={[styles.container, this.props.style]}>
 				{this.props.children}
 			</ScrollView>
 		);

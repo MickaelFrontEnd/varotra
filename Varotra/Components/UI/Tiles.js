@@ -1,19 +1,19 @@
-import React from 'react';
-import { View, Image, StyleSheet, TouchableOpacity, Text } from 'react-native';
-import Button from './StyledButton';
+import React from 'react'
+import { View, Image, StyleSheet, TouchableOpacity, Text } from 'react-native'
+import IconButton, { LikeButton, CommentButton, ShareButton, CartButton } from './IconButton'
 
 class Tiles extends React.Component {
 
 	constructor(props) {
-		super(props);
+		super(props)
 		this.state = {
 			showDescription: false
 		}
 	}
 
 	toggleControls = () => {
-		const showDescription = this.state.showDescription;
-		this.setState({ showDescription: !showDescription });
+		const showDescription = this.state.showDescription
+		this.setState({ showDescription: !showDescription })
 	}
 
 	render() {
@@ -25,14 +25,14 @@ class Tiles extends React.Component {
 						source={{ uri: this.props.visual }} />
 				</TouchableOpacity>
 				<View style={styles.controls}>
-					<View style={styles.left}>
-						<Button title="J'aime" />
-						<Button title="Commenter" />
-					</View>
-					<View style={styles.right}>
-						<Button title="Partage" />
-						<Button title="Panier" />
-					</View>
+					{/* <View style={styles.left}> */}
+						<LikeButton style={styles.btn}/>
+						<CommentButton style={styles.btn} />
+					{/* </View> */}
+					{/* <View style={styles.right}> */}
+						<ShareButton style={styles.btn} />
+						<CartButton style={styles.btn} />
+					{/* </View> */}
 				</View>
 				{this.state.showDescription &&
 					<View>
@@ -47,13 +47,13 @@ class Tiles extends React.Component {
 	}
 }
 
-export default Tiles;
+export default Tiles
 
 const styles = StyleSheet.create({
 	container: {
 		flex: 0,
 		flexDirection: "column",
-		margin: 10
+		marginBottom: 20
 	},
 	visual: {
 		width: "100%",
@@ -64,15 +64,24 @@ const styles = StyleSheet.create({
 		flex: 0,
 		flexDirection: "row",
 		justifyContent: "space-between",
-		paddingTop: 10,
-		paddingBottom: 10
+		padding: 20
 	},
 	left: {
+		flex: 0,
 		flexDirection: "row",
-		alignItems: "flex-start"
+		alignItems: "flex-start",
+		justifyContent: "space-between",
+		width: "50%"
 	},
 	right: {
+		flex: 0,
 		flexDirection: "row",
-		alignItems: "flex-end"
+		alignItems: "flex-end",
+		justifyContent: "space-between",
+		width: "50%"
+	},
+	btn: {
+		width: 25,
+		height: 25
 	}
-});
+})

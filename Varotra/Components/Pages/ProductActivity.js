@@ -12,7 +12,7 @@ class ProductActivity extends React.Component {
 
 	render() {
 		return (
-			<Container>
+			<Container style={styles.container}>
 				<Navigation />
 				<ProductSuggestion />
 				<Text style={styles.title}>Nos produits</Text>
