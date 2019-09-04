@@ -1,6 +1,6 @@
 import React from 'react'
 import { View, Image, StyleSheet, TouchableOpacity, Text } from 'react-native'
-import IconButton, { LikeButton, CommentButton, ShareButton, CartButton } from './IconButton'
+import { LikeButton, CommentButton, ShareButton, CartButton } from './IconButton'
 
 class Tiles extends React.Component {
 
@@ -25,14 +25,10 @@ class Tiles extends React.Component {
 						source={{ uri: this.props.visual }} />
 				</TouchableOpacity>
 				<View style={styles.controls}>
-					{/* <View style={styles.left}> */}
-						<LikeButton style={styles.btn}/>
-						<CommentButton style={styles.btn} />
-					{/* </View> */}
-					{/* <View style={styles.right}> */}
-						<ShareButton style={styles.btn} />
-						<CartButton style={styles.btn} />
-					{/* </View> */}
+					<LikeButton style={styles.btn} />
+					<CommentButton style={styles.btn} />
+					<ShareButton style={styles.btn} />
+					<CartButton style={styles.btn} />
 				</View>
 				{this.state.showDescription &&
 					<View>
@@ -53,7 +49,15 @@ const styles = StyleSheet.create({
 	container: {
 		flex: 0,
 		flexDirection: "column",
-		marginBottom: 20
+		marginBottom: 20,
+		shadowColor: "#000",
+		shadowOffset: {
+			width: 0,
+			height: 2
+		},
+		shadowOpacity: 0.25,
+		shadowRadius: 3.84,
+		elevation: 16
 	},
 	visual: {
 		width: "100%",

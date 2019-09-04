@@ -5,8 +5,19 @@ import StyledButton from './StyledButton'
 class Navigation extends React.Component {
 
 	render(){
-		const link = ["Home","Produit","Article","Centre","Marque"].map((value, index) => {
-			return <StyledButton key={index} title={value} style={styles.btn} color="white" />;
+		const link = ["Accueil","Produit","Article","Centre","Marque"].map((value, index) => {
+			if(index === 1) {
+				return <StyledButton 
+					key={index} 
+					title={value} 
+					style={[styles.btn, styles.btnActive]} 
+					color="white" />
+			}
+			return <StyledButton 
+				key={index} 
+				title={value} 
+				style={styles.btn} 
+				color="white" />
 		});
 		return (
 			<ScrollView contentContainerStyle={styles.container} horizontal={true} indicatorStyle="white">
@@ -26,6 +37,9 @@ const styles = StyleSheet.create({
 		marginLeft: 5,
 		marginRight: 5,
 		width: 80
+	},
+	btnActive: {
+		backgroundColor: "#474457"
 	}
 })
 

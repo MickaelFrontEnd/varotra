@@ -21,6 +21,7 @@ class ProductSuggestion extends React.Component {
 						textual="Huawei p9"
 						visual="https://pisces.bbystatic.com/image2/BestBuy_US/images/products/6347/6347785_sd.jpg" />
 					<ImageOnlyTiles 
+						textual="Huawei p10"
 						visual="https://static.toiimg.com/photo/63393835/Vivo-Apex.jpg" />
 				</ScrollView>
 			</View>

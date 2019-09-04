@@ -69,14 +69,14 @@ export const DrawerNavigator = createDrawerNavigator({
 	Home: {
 		screen: ProductNavigator,
 		navigationOptions: () => ({
-			drawerLabel: 'Home',
+			drawerLabel: 'Accueil',
 			drawerIcon: () => <Ionicons name="md-home" size={24} />
 		})
 	},
 	Activity: {
 		screen: ProductNavigator,
 		navigationOptions: () => ({
-			drawerLabel: 'Mon activité',
+			drawerLabel: 'Mes activités',
 			drawerIcon: () => <Ionicons name="md-brush" size={24} />
 		})
 	},
@@ -90,7 +90,7 @@ export const DrawerNavigator = createDrawerNavigator({
 	Notification: {
 		screen: HomeNavigator,
 		navigationOptions: () => ({
-			drawerLabel: 'Notifications',
+			drawerLabel: 'Notifications (3)',
 			drawerIcon: () => <Ionicons name="md-notifications" size={24} />
 		})
 	},
