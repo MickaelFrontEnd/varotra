@@ -2,8 +2,9 @@ import React from 'react'
 import Container from './../Hoc/Container'
 import Navigation from './../UI/Navigation'
 import ProductSuggestion from '../UI/ProductSuggestion'
-import { StyleSheet, Text, ScrollView } from 'react-native'
-import Tiles from '../UI/Tiles';
+import { StyleSheet, Text } from 'react-native'
+import Tiles from '../UI/Tiles'
+import Ionicons from 'react-native-vector-icons/Ionicons'
 
 class ProductActivity extends React.Component {
 	constructor(props) {

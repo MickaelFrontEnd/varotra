@@ -1,6 +1,7 @@
 import React from 'react'
 import Tiles from './../UI/Tiles'
 import Container from './../Hoc/Container'
+import Ionicons from 'react-native-vector-icons/Ionicons'
 
 class HomeActivity extends React.Component {
 	constructor(props) {
