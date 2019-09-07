@@ -24,26 +24,23 @@ class Tiles extends React.Component {
 						style={styles.visual}
 						source={{ uri: this.props.visual }} />
 				</TouchableOpacity>
-				<View style={styles.controls}>
-					<LikeButton style={styles.btn} />
-					<CommentButton style={styles.btn} />
-					<ShareButton style={styles.btn} />
-					<CartButton style={styles.btn} />
-				</View>
-				{this.state.showDescription &&
-					<View>
-						<Text>
-							Lorem Ipsum
-	Lorem Ipsum est un texte d'espace réservé couramment utilisé dans les industries graphique, imprimée et éditoriale pour prévisualiser les mises en page et les maquettes visuelles.
-						</Text>
-					</View>
+				{
+					this.state.showDescription &&
+					<Text>
+						Lorem Ipsum
+Lorem Ipsum est un texte d'espace réservé couramment utilisé dans les industries graphique, imprimée et éditoriale pour prévisualiser les mises en page et les maquettes visuelles.
+					</Text>
 				}
+				<View style={styles.controls}>
+					{this.props.showLike && <View style={styles.btnContainer}><LikeButton style={styles.btn} /></View>}
+					{this.props.showComment && <View style={styles.btnContainer}><CommentButton style={styles.btn} /></View>}
+					{this.props.showShare && <View style={styles.btnContainer}><ShareButton style={styles.btn} /></View>}
+					{this.props.showCart && <View style={styles.btnContainer}><CartButton style={styles.btn} /></View>}
+				</View>
 			</View>
 		)
 	}
 }
-
-export default Tiles
 
 const styles = StyleSheet.create({
 	container: {
@@ -52,12 +49,13 @@ const styles = StyleSheet.create({
 		marginBottom: 20,
 		shadowColor: "#000",
 		shadowOffset: {
-			width: 0,
+			width: 2,
 			height: 2
 		},
 		shadowOpacity: 0.25,
 		shadowRadius: 3.84,
-		elevation: 16
+		elevation: 16,
+		zIndex: 100
 	},
 	visual: {
 		width: "100%",
@@ -67,25 +65,21 @@ const styles = StyleSheet.create({
 	controls: {
 		flex: 0,
 		flexDirection: "row",
-		justifyContent: "space-between",
-		padding: 20
+		justifyContent: "flex-start",
+		paddingTop: 20,
+		paddingBottom: 20,
+		width: "100%"
 	},
-	left: {
+	btnContainer: {
+		width: "25%",
 		flex: 0,
-		flexDirection: "row",
-		alignItems: "flex-start",
-		justifyContent: "space-between",
-		width: "50%"
-	},
-	right: {
-		flex: 0,
-		flexDirection: "row",
-		alignItems: "flex-end",
-		justifyContent: "space-between",
-		width: "50%"
+		justifyContent: "center",
+		alignItems: "center"
 	},
 	btn: {
 		width: 25,
 		height: 25
 	}
 })
+
+export default Tiles

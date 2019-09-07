@@ -1,17 +1,34 @@
 import React from 'react'
-import { View, TouchableHighlight, StyleSheet, Image } from 'react-native'
+import { View, StyleSheet, Image, TextInput } from 'react-native'
+import { TouchableOpacity } from 'react-native-gesture-handler';
 
 class Search extends React.Component {
+
+	constructor(props) {
+		super(props)
+		this.state = {
+			expandSearch: false
+		}
+	}
+
+	expandSearch = () => {
+		this.setState({
+			expandSearch: !this.state.expandSearch
+		})
+	}
 
 	render() {
 		return (
 			<View style={styles.container}>
-				<TouchableHighlight onPress={this.props.onPress}>
+				{
+					this.state.expandSearch && <TextInput style={styles.input} />
+				}
+				<TouchableOpacity onPress={this.expandSearch}>
 					<Image
-						style={{width: 25, height: 25}}
+						style={{ width: 25, height: 25 }}
 						source={require('./search.png')}
 					/>
-				</TouchableHighlight>
+				</TouchableOpacity>
 			</View>
 		)
 	}
@@ -25,15 +42,13 @@ const styles = StyleSheet.create({
 		paddingRight: 10,
 	},
 	input: {
-		borderRadius: 10,
-		borderColor: "black",
-		borderStyle: "solid",
+		height: 25,
+		width: 300,
+		borderColor: 'gray',
 		borderWidth: 1,
-		padding: 10,
-		flexBasis: "90%"
-	},
-	btn: {
-		flexBasis: "10%"
+		marginRight: 10,
+		zIndex: 100,
+		backgroundColor: 'white'
 	}
 })
 
