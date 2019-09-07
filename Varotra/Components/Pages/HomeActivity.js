@@ -1,46 +1,33 @@
 import React from 'react'
-import Tiles from './../UI/Tiles'
 import Container from './../Hoc/Container'
-import Ionicons from 'react-native-vector-icons/Ionicons'
+import Navigation from './../UI/Navigation'
+import ProductSuggestion from './../UI/ProductSuggestion'
+import { Text, StyleSheet } from 'react-native'
+import Tiles from './../UI/Tiles'
 
 class HomeActivity extends React.Component {
 	constructor(props) {
 		super(props)
-		this.state = {
-			products: []
-		}
-	}
-
-	getProduct() {
-		const url = 'http://192.168.100.11:8080/Syrecpro/Services/Produits/'
-		return fetch(url)
-			.then((response) => response.json())
-			.catch((error) => alert(error))
-	}
-
-	componentDidMount() {
-		this.getProduct().then((response) => {
-			if(response.status === 200) {
-				this.setState({
-					products: response.data
-				})
-			}
-			else {
-				alert(response.errorMessage)
-			}
-		})
 	}
 
 	render(){
 		return (
-			<Container>
-				{this.state.products.map((product) => {
-					//console.log(product)
-					return <Tiles key={product.id} visual={product.photo} />
-				})}
+			<Container style={styles.container}>
+				<Navigation navigation={this.props.navigation}/>
+				<ProductSuggestion />
+				<Text style={styles.title}>Nos produits & articles</Text>
+				<Tiles visual="https://zdnet3.cbsistatic.com/hub/i/r/2019/08/05/b2e40423-7c4c-48b5-9c7a-ea7ee92f96fe/thumbnail/770x433/c0942922b4c437cffdac1b9d2b0fd7e6/13-inch-mbpro-header.jpg" />
+				<Tiles visual="https://assets.pcmag.com/media/images/457973-apple-macbook-pro-15-inch-2017.jpg?width=810&height=456" />
 			</Container>
 		);
 	}
 }
+
+const styles = StyleSheet.create({
+	title: {
+		fontSize: 25,
+		marginBottom: 20
+	}
+})
 
 export default HomeActivity;

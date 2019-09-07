@@ -2,21 +2,28 @@ import React from 'react'
 import { ScrollView, StyleSheet } from 'react-native'
 import StyledButton from './StyledButton'
 
-class Navigation extends React.Component {
+class Navigation extends React.PureComponent {
+
+	LINK = ["Accueil","Produit","Article","Centre","Marque"];
+	SCREEN = ["Home", "Product", "Article", "Center", "Brand"];
+
+	constructor(props) {
+		super(props)
+		this.activeIndex = 0
+	}
+
+	navigate = (value) => {
+		this.props.navigation.navigate(value)
+	}
 
 	render(){
-		const link = ["Accueil","Produit","Article","Centre","Marque"].map((value, index) => {
-			if(index === 1) {
-				return <StyledButton 
-					key={index} 
-					title={value} 
-					style={[styles.btn, styles.btnActive]} 
-					color="white" />
-			}
+		const link = this.LINK.map((value, index) => {
+			const style = this.props.navigation.state.routeName === this.SCREEN[index] ? [styles.btn, styles.btnActive] : styles.btn
 			return <StyledButton 
 				key={index} 
 				title={value} 
-				style={styles.btn} 
+				style={style} 
+				onPress={() => this.navigate(this.SCREEN[index], index)}
 				color="white" />
 		});
 		return (
@@ -25,6 +32,7 @@ class Navigation extends React.Component {
 			</ScrollView>
 		)
 	}
+
 }
 
 const styles = StyleSheet.create({

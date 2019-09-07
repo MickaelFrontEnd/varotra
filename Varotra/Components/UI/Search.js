@@ -1,24 +1,28 @@
-import React from 'react';
-import { View, Button, TextInput, StyleSheet } from 'react-native';
+import React from 'react'
+import { View, TouchableHighlight, StyleSheet, Image } from 'react-native'
 
 class Search extends React.Component {
 
-	render(){
+	render() {
 		return (
 			<View style={styles.container}>
-				<TextInput placeholder="Tapez votre recherche ici" style={styles.input} />
-				<Button title="Search" style={styles.btn} />
+				<TouchableHighlight onPress={this.props.onPress}>
+					<Image
+						style={{width: 25, height: 25}}
+						source={require('./search.png')}
+					/>
+				</TouchableHighlight>
 			</View>
 		)
 	}
 }
 
-export default Search;
-
 const styles = StyleSheet.create({
 	container: {
 		flex: 0,
 		flexDirection: "row",
+		paddingLeft: 10,
+		paddingRight: 10,
 	},
 	input: {
 		borderRadius: 10,
@@ -31,4 +35,6 @@ const styles = StyleSheet.create({
 	btn: {
 		flexBasis: "10%"
 	}
-});
+})
+
+export default Search

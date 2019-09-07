@@ -8,6 +8,7 @@ import DrawerMenu from './../UI/DrawerMenu'
 import { Container, Header, Body, Content} from 'native-base'
 import { Image, Text } from 'react-native'
 import Ionicons from 'react-native-vector-icons/Ionicons'
+import Search from '../UI/Search';
 
 export const HomeNavigator = createStackNavigator({
 	Home: {
@@ -15,6 +16,7 @@ export const HomeNavigator = createStackNavigator({
 		navigationOptions: ({navigation}) => ({
 			title: 'Accueil',
 			headerLeft: <DrawerMenu navigation={navigation} />,
+			headerRight: <Search />
 		})
 	}
 })
@@ -23,8 +25,9 @@ export const ProductNavigator = createStackNavigator({
 	Product: {
 		screen: ProductActivity,
 		navigationOptions: ({navigation}) => ({
-			title: 'Produits',
+			title: 'Accueil',
 			headerLeft: <DrawerMenu navigation={navigation} />,
+			headerRight: <Search />
 		})
 	}
 })
@@ -67,7 +70,7 @@ const CustomDrawer = (props) => (
 
 export const DrawerNavigator = createDrawerNavigator({
 	Home: {
-		screen: ProductNavigator,
+		screen: HomeNavigator,
 		navigationOptions: () => ({
 			drawerLabel: 'Accueil',
 			drawerIcon: () => <Ionicons name="md-home" size={24} />
