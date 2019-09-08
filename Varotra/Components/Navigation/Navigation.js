@@ -188,7 +188,7 @@ export const DrawerNavigator = createDrawerNavigator({
 		})
 	}
 }, {
-	initialRouteName: 'Cart',
+	initialRouteName: 'Home',
 	contentComponent: CustomDrawer,
 	hideStatusBar: true,
 	contentOptions: {

@@ -26,7 +26,7 @@ class HomeActivity extends React.Component {
 
 	render() {
 		return (
-			this.state.loading ? <Indicator size="large" color="#000" /> :
+			this.state.loading ? <Indicator /> :
 				<Container>
 					<Navigation navigation={this.props.navigation} />
 					<ProductSuggestion list={this.state.suggestions} pushed={this.state.pushedSuggestion} />

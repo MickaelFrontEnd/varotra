@@ -5,8 +5,8 @@ class Indicator extends React.Component {
 	render() {
 		return <ActivityIndicator 
 			style={styles.container} 
-			size={this.props.size} 
-			color={this.props.color} />
+			size="large" 
+			color="#000" />
 	}
 }
 
