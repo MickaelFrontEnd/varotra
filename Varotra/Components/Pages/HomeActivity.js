@@ -14,6 +14,7 @@ class HomeActivity extends React.Component {
 	constructor(props) {
 		super(props)
 		this.state = {
+			allProducts: [],
 			products: [],
 			suggestions: [],
 			articles: [],
@@ -22,6 +23,12 @@ class HomeActivity extends React.Component {
 			loading: true,
 			pushedSuggestion: 0
 		}
+	}
+
+	getProduct = () => {
+		this.setState((previousState) => ({
+			products: previousState.allProducts
+		}))
 	}
 
 	render() {
@@ -49,7 +56,7 @@ class HomeActivity extends React.Component {
 								))
 						}
 						{
-							(this.state.products.length > 0) && <ViewMoreBtn />
+							(this.state.products.length > 0) && <ViewMoreBtn onPress={this.getProduct} />
 						}
 					</Section>
 					<Section title="Nos articles">
@@ -107,10 +114,11 @@ class HomeActivity extends React.Component {
 		const shops = await getData(URL.HOME_SHOP)
 
 		this.setState({
-			products: products.produits,
+			allProducts: products.produits,
+			products: products.produits.slice(0,5),
 			suggestions: suggestions.suggestions,
 			articles: articles.articles,
-			brands: brands.marques,
+			brands: brands.marques.slice(0,5),
 			shops: shops.centres,
 			loading: false
 		})

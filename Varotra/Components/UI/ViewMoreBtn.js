@@ -7,6 +7,7 @@ class ViewMoreBtn extends React.Component {
 		return (
 			<View>
 				<StyledButton
+					onPress={this.props.onPress}
 					title="Voir plus..."
 					style={styles.viewMore}
 					color="white" />
