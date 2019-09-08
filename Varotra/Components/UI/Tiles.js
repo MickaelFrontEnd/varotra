@@ -7,13 +7,13 @@ class Tiles extends React.Component {
 	constructor(props) {
 		super(props)
 		this.state = {
-			showDescription: false
+			showContent: false
 		}
 	}
 
 	toggleControls = () => {
-		const showDescription = this.state.showDescription
-		this.setState({ showDescription: !showDescription })
+		const showContent = this.state.showContent
+		this.setState({ showContent: !showContent })
 	}
 
 	render() {
@@ -24,19 +24,20 @@ class Tiles extends React.Component {
 						style={styles.visual}
 						source={{ uri: this.props.visual }} />
 				</TouchableOpacity>
-				{
-					this.state.showDescription &&
-					<Text>
-						Lorem Ipsum
-Lorem Ipsum est un texte d'espace réservé couramment utilisé dans les industries graphique, imprimée et éditoriale pour prévisualiser les mises en page et les maquettes visuelles.
-					</Text>
-				}
 				<View style={styles.controls}>
 					{this.props.showLike && <View style={styles.btnContainer}><LikeButton style={styles.btn} /></View>}
 					{this.props.showComment && <View style={styles.btnContainer}><CommentButton style={styles.btn} /></View>}
 					{this.props.showShare && <View style={styles.btnContainer}><ShareButton style={styles.btn} /></View>}
 					{this.props.showCart && <View style={styles.btnContainer}><CartButton style={styles.btn} /></View>}
 				</View>
+				{
+					this.state.showContent && (
+						<View style={styles.content}>
+							<Text>Désignation: {this.props.title}</Text>
+							<Text>Description: {this.props.description}</Text>
+						</View>
+					)
+				}
 			</View>
 		)
 	}
@@ -62,6 +63,9 @@ const styles = StyleSheet.create({
 		height: 200,
 		resizeMode: "cover"
 	},
+	content: {
+		//paddingTop: 20
+	},	
 	controls: {
 		flex: 0,
 		flexDirection: "row",

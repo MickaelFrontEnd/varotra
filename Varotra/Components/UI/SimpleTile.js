@@ -2,7 +2,7 @@ import React from 'react'
 import { Image, StyleSheet, View, Text } from 'react-native'
 
 
-class ImageOnlyTiles extends React.Component {
+class SimpleTile extends React.Component {
 	render() {
 		return (
 			<View style={styles.container}>
@@ -35,4 +35,4 @@ const styles = StyleSheet.create({
 	}
 })
 
-export default ImageOnlyTiles
+export default SimpleTile

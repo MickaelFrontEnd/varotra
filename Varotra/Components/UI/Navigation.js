@@ -5,7 +5,7 @@ import StyledButton from './StyledButton'
 class Navigation extends React.PureComponent {
 
 	LINK = ["Accueil","Produit","Article","Centre","Marque"];
-	SCREEN = ["Home", "Product", "Article", "Center", "Brand"];
+	SCREEN = ["Home", "Product", "Article", "Shop", "Brand"];
 
 	constructor(props) {
 		super(props)

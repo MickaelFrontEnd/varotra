@@ -4,11 +4,18 @@ import { createStackNavigator } from 'react-navigation-stack'
 import { createDrawerNavigator, DrawerNavigatorItems } from 'react-navigation-drawer'
 import HomeActivity from './../Pages/HomeActivity'
 import ProductActivity from './../Pages/ProductActivity'
+import ArticleActivity from './../Pages/ArticleActivity'
+import BrandActivity from './../Pages/BrandActivity'
+import ShopActivity from './../Pages/ShopActivity'
+import ActivityActivity from './../Pages/ActivityActivity'
+import CartActivity from './../Pages/CartActivity'
+import NotificationActivity from './../Pages/NotificationActivity'
+import LoginActivity from './../Pages/LoginActivity'
 import DrawerMenu from './../UI/DrawerMenu'
 import { Container, Header, Body, Content} from 'native-base'
 import { Image, Text } from 'react-native'
 import Ionicons from 'react-native-vector-icons/Ionicons'
-import Search from '../UI/Search';
+import Search from '../UI/Search'
 
 export const HomeNavigator = createStackNavigator({
 	Home: {
@@ -25,12 +32,90 @@ export const ProductNavigator = createStackNavigator({
 	Product: {
 		screen: ProductActivity,
 		navigationOptions: ({navigation}) => ({
-			title: 'Accueil',
+			title: 'Nos produits',
 			headerLeft: <DrawerMenu navigation={navigation} />,
 			headerRight: <Search />
 		})
 	}
 })
+
+export const ArticleNavigator = createStackNavigator({
+	Article: {
+		screen: ArticleActivity,
+		navigationOptions: ({navigation}) => ({
+			title: 'Nos articles',
+			headerLeft: <DrawerMenu navigation={navigation} />,
+			headerRight: <Search />
+		})
+	}
+})
+
+export const BrandNavigator = createStackNavigator({
+	Brand: {
+		screen: BrandActivity,
+		navigationOptions: ({navigation}) => ({
+			title: 'Nos marques',
+			headerLeft: <DrawerMenu navigation={navigation} />,
+			headerRight: <Search />
+		})
+	}
+})
+
+export const ShopNavigator = createStackNavigator({
+	Shop: {
+		screen: ShopActivity,
+		navigationOptions: ({navigation}) => ({
+			title: 'Nos centres',
+			headerLeft: <DrawerMenu navigation={navigation} />,
+			headerRight: <Search />
+		})
+	}
+})
+
+export const ActivityNavigator = createStackNavigator({
+	Activity: {
+		screen: ActivityActivity,
+		navigationOptions: ({navigation}) => ({
+			title: 'Mes activités',
+			headerLeft: <DrawerMenu navigation={navigation} />,
+			headerRight: <Search />
+		})
+	}
+})
+
+export const CartNavigator = createStackNavigator({
+	Cart: {
+		screen: CartActivity,
+		navigationOptions: ({navigation}) => ({
+			title: 'Mes activités',
+			headerLeft: <DrawerMenu navigation={navigation} />,
+			headerRight: <Search />
+		})
+	}
+})
+
+export const NotificationNavigator = createStackNavigator({
+	Notification: {
+		screen: NotificationActivity,
+		navigationOptions: ({navigation}) => ({
+			title: 'Mes activités',
+			headerLeft: <DrawerMenu navigation={navigation} />,
+			headerRight: <Search />
+		})
+	}
+})
+
+export const LoginNavigator = createStackNavigator({
+	Login: {
+		screen: LoginActivity,
+		navigationOptions: () => ({
+			title: null,
+			headerLeft: null,
+			headerRight: null
+		})
+	}},{
+		headerMode: "none"
+	})
 
 const CustomDrawer = (props) => (
 	<Container>
@@ -77,35 +162,35 @@ export const DrawerNavigator = createDrawerNavigator({
 		})
 	},
 	Activity: {
-		screen: ProductNavigator,
+		screen: ActivityNavigator,
 		navigationOptions: () => ({
 			drawerLabel: 'Mes activités',
 			drawerIcon: () => <Ionicons name="md-brush" size={24} />
 		})
 	},
 	Cart: {
-		screen: HomeNavigator,
+		screen: CartNavigator,
 		navigationOptions: () => ({
 			drawerLabel: 'Mon Panier',
 			drawerIcon: () => <Ionicons name="md-cart" size={24} />
 		})
 	},
 	Notification: {
-		screen: HomeNavigator,
+		screen: NotificationNavigator,
 		navigationOptions: () => ({
 			drawerLabel: 'Notifications (3)',
 			drawerIcon: () => <Ionicons name="md-notifications" size={24} />
 		})
 	},
 	Deconnexion: {
-		screen: HomeNavigator,
+		screen: LoginNavigator,
 		navigationOptions: () => ({
 			drawerLabel: 'Déconnexion',
 			drawerIcon: () => <Ionicons name="md-log-out" size={24} />
 		})
 	}
 }, {
-	initialRouteName: 'Home',
+	initialRouteName: 'Deconnexion',
 	contentComponent: CustomDrawer,
 	hideStatusBar: true,
 	contentOptions: {

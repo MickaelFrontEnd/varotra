@@ -1,5 +1,5 @@
 import React from 'react'
-import ImageOnlyTiles from './ImageOnlyTiles'
+import SimpleTile from './SimpleTile'
 import { StyleSheet, ScrollView, View, Text } from 'react-native'
 import ScaleView from './../UI/animated/ScaleView'
 
@@ -56,10 +56,10 @@ class ProductSuggestion extends React.Component {
 						this.state.products.map((value, index) => {
 							return index === 0 ?
 								<ScaleView key={index}>
-									<ImageOnlyTiles
+									<SimpleTile
 										textual={value.textual}
 										visual={value.visual} />
-								</ScaleView> : <ImageOnlyTiles
+								</ScaleView> : <SimpleTile
 									key={index}
 									textual={value.textual}
 									visual={value.visual} />
