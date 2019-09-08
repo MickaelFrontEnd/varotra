@@ -4,12 +4,11 @@ import StyledButton from './StyledButton'
 
 class Navigation extends React.PureComponent {
 
-	LINK = ["Accueil","Produit","Article","Centre","Marque"];
-	SCREEN = ["Home", "Product", "Article", "Shop", "Brand"];
+	LINK = ["Accueil","Produit","Article","Marque","Centre"]
+	SCREEN = ["Home", "Product", "Article", "Brand", "Shop"]
 
 	constructor(props) {
 		super(props)
-		this.activeIndex = 0
 	}
 
 	navigate = (value) => {

@@ -5,27 +5,51 @@ import ProductSuggestion from '../UI/ProductSuggestion'
 import BannerTile from '../UI/BannerTile'
 import Section from './../UI/Section'
 import ViewMoreBtn from './../UI/ViewMoreBtn'
+import Indicator from './../UI/Indicator'
+import getData, { getUrl } from './../Api/Api'
 
 class ShopActivity extends React.Component {
 	constructor(props) {
 		super(props)
+		this.state = {
+			shops: [],
+			suggestions: [],
+			loading: true
+		}
+	}
+
+	async componentDidMount() {
+		const URL = await getUrl()
+		const shops = await getData(URL.SHOP_SHOP)
+		const suggestions = await getData(URL.SHOP_SUGGESTION)
+
+		this.setState({
+			shops: shops.centres,
+			suggestions: suggestions.suggestions,
+			loading: false
+		})
 	}
 
 	render() {
 		return (
-			<Container>
-				<Navigation navigation={this.props.navigation}/>
-				<ProductSuggestion />
-				<Section title="Nos centres " childrenContainer={{ flex: 0 }}>
-					<BannerTile
-						visual="https://zdnet3.cbsistatic.com/hub/i/r/2019/08/05/b2e40423-7c4c-48b5-9c7a-ea7ee92f96fe/thumbnail/770x433/c0942922b4c437cffdac1b9d2b0fd7e6/13-inch-mbpro-header.jpg"
-						textual="Apple" />
-					<BannerTile
-						visual="https://assets.pcmag.com/media/images/457973-apple-macbook-pro-15-inch-2017.jpg?width=810&height=456"
-						textual="Microsoft" />
-					<ViewMoreBtn />
-				</Section>
-			</Container>
+			this.state.loading ? <Indicator /> :
+				<Container>
+					<Navigation navigation={this.props.navigation} />
+					<ProductSuggestion list={this.state.suggestions} />
+					<Section title="Nos centres " childrenContainer={{ flex: 0 }}>
+						{
+							this.state.shops.map((value, index) => (
+								<BannerTile
+									key={index}
+									visual={value.photo}
+									textual={value.designation} />
+							))
+						}
+						{
+							(this.state.shops.length > 0) && <ViewMoreBtn />
+						}
+					</Section>
+				</Container>
 		);
 	}
 }

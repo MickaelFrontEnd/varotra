@@ -17,11 +17,11 @@ class ProductSuggestion extends React.Component {
 							return index < this.props.pushed ?
 								<ScaleView key={index}>
 									<SimpleTile
-										textual={value.designation}
+										textual={value.designation.substring(0,14) + '...'}
 										visual={value.photo} />
 								</ScaleView> : <SimpleTile
 									key={index}
-									textual={value.designation}
+									textual={value.designation.substring(0,14) + '...'}
 									visual={value.photo} />
 						})
 					}
