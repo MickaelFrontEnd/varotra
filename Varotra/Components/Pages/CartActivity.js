@@ -7,6 +7,7 @@ import Ionicons from 'react-native-vector-icons/Ionicons'
 import { View } from 'native-base';
 import getData, { getUrl } from '../Api/Api'
 import Indicator from './../UI/Indicator'
+import Toast from 'react-native-root-toast'
 
 class CartActivity extends React.Component {
 
@@ -17,6 +18,13 @@ class CartActivity extends React.Component {
 			isLoading: true,
 			showConfirmation: false
 		}
+	}
+
+	purschased = () => {
+		Toast.show("Le produit a été ajouté dans votre panier",{
+			duration: Toast.durations.SHORT,
+			position: Toast.positions.TOP
+		})
 	}
 
 	render() {
@@ -90,7 +98,10 @@ class CartActivity extends React.Component {
 				text: "Annuler", onPress: () => alert("KO")
 			},
 			{
-				text: "Confirmer", onPress: () => this.setState({ carts: [] })
+				text: "Confirmer", onPress: () => {
+					this.purschased()
+					this.setState({ carts: [] })
+				}
 			}]
 		)
 	}

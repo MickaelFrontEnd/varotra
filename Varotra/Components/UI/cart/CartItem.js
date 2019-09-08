@@ -1,5 +1,5 @@
 import React from 'react'
-import { View, Image, Text, StyleSheet } from 'react-native'
+import { View, Image, Text, StyleSheet, TextInput } from 'react-native'
 
 class CartItem extends React.Component {
 	render() {
@@ -11,7 +11,13 @@ class CartItem extends React.Component {
 						style={[styles.visual]} />
 				</View>
 				<Text style={[styles.row, styles.center]}>{this.props.designation}</Text>
-				<Text style={[styles.row, styles.number, styles.editable]}>{this.props.quantity}</Text>
+				<View style={[{
+					justifyContent: "center",
+					alignItems: "flex-end",
+					paddingLeft: 10
+				},styles.row]}>
+					<TextInput style={[styles.editable]} value={this.props.quantity.toString()}/>
+				</View>
 				<Text style={[styles.row, styles.number]}>{this.props.unitPrice}</Text>
 				<Text style={[styles.row, styles.number]}>{this.props.totalPrice}</Text>
 			</View>
@@ -77,8 +83,13 @@ const styles = StyleSheet.create({
 		paddingBottom: 10
 	},
 	editable: {
-		color: "blue",
-		textDecorationLine: "underline"
+		borderColor: "grey",
+		borderWidth: 1,
+		height: 30,
+		width: "100%",
+		margin: "auto",
+		textAlign: "right",
+		padding: 5
 	}
 })
 

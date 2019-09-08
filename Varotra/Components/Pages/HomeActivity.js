@@ -11,6 +11,9 @@ import Indicator from './../UI/Indicator'
 
 
 class HomeActivity extends React.Component {
+
+	REFRESH_TIME = 5000 
+	
 	constructor(props) {
 		super(props)
 		this.state = {
@@ -23,6 +26,7 @@ class HomeActivity extends React.Component {
 			loading: true,
 			pushedSuggestion: 0
 		}
+		this.likeCount = 1
 	}
 
 	getProduct = () => {
@@ -40,20 +44,20 @@ class HomeActivity extends React.Component {
 					<Section title="Nos produits" childrenContainer={{ flex: 0 }}>
 						{
 							this.state.products.map((value, index) => (
-									<Tiles
-										key={index}
-										visual={value.photo}
-										showLike={true}
-										showComment={true}
-										showShare={true}
-										showCart={true}
-										title={value.designation}
-										description={value.description}
-										like={value.nombreJaime}
-										comments={value.commentaires}
-										onLike={this.getSuggestion}
-									/>
-								))
+								<Tiles
+									key={index}
+									visual={value.photo}
+									showLike={true}
+									showComment={true}
+									showShare={true}
+									showCart={true}
+									title={value.designation}
+									description={value.description}
+									like={value.nombreJaime}
+									comments={value.commentaires}
+									onLike={this.getSuggestion}
+								/>
+							))
 						}
 						{
 							(this.state.products.length > 0) && <ViewMoreBtn onPress={this.getProduct} />
@@ -115,22 +119,27 @@ class HomeActivity extends React.Component {
 
 		this.setState({
 			allProducts: products.produits,
-			products: products.produits.slice(0,5),
+			products: products.produits.slice(0, 5),
 			suggestions: suggestions.suggestions,
 			articles: articles.articles,
-			brands: brands.marques.slice(0,5),
+			brands: brands.marques.slice(0, 5),
 			shops: shops.centres,
 			loading: false
 		})
 	}
 
 	getSuggestion = async () => {
+		this.likeCount++
 		const URL = await getUrl()
 		const suggestions = await getData(URL.LIKE)
-		this.setState((previousState) => ({
-			suggestions: suggestions.suggestions.concat(previousState.suggestions),
-			pushedSuggestion: suggestions.suggestions.length
-		}))
+		if (this.likeCount === 3) {
+			setTimeout(() => {
+				this.setState((previousState) => ({
+					suggestions: suggestions.suggestions.concat(previousState.suggestions),
+					pushedSuggestion: suggestions.suggestions.length
+				}))
+			}, this.REFRESH_TIME)
+		}
 	}
 }
 
