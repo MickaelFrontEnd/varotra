@@ -1,15 +1,15 @@
 import React from 'react'
-import { TouchableHighlight, Image } from 'react-native'
+import { TouchableOpacity, Image } from 'react-native'
 
 class IconButton extends React.Component {
 	render() {
 		return (
-			<TouchableHighlight onPress={this.props.onPress}>
+			<TouchableOpacity onPress={this.props.onPress}>
 				<Image
 					style={this.props.style}
 					source={{uri: this.props.icon}}
 				/>
-			</TouchableHighlight>
+			</TouchableOpacity>
 		)
 	}
 }
@@ -17,12 +17,12 @@ class IconButton extends React.Component {
 export class LikeButton extends React.Component {
 	render() {
 		return (
-			<TouchableHighlight onPress={this.props.onPress}>
+			<TouchableOpacity onPress={this.props.onPress}>
 				<Image
 					style={this.props.style}
 					source={require('./like.png')}
 				/>
-			</TouchableHighlight>
+			</TouchableOpacity>
 		)
 	}
 }
@@ -30,12 +30,12 @@ export class LikeButton extends React.Component {
 export class LikedButton extends React.Component {
 	render() {
 		return (
-			<TouchableHighlight onPress={this.props.onPress}>
+			<TouchableOpacity onPress={this.props.onPress}>
 				<Image
 					style={this.props.style}
 					source={require('./liked.png')}
 				/>
-			</TouchableHighlight>
+			</TouchableOpacity>
 		)
 	}
 }
@@ -43,12 +43,12 @@ export class LikedButton extends React.Component {
 export class CommentButton extends React.Component {
 	render() {
 		return (
-			<TouchableHighlight onPress={this.props.onPress}>
+			<TouchableOpacity onPress={this.props.onPress}>
 				<Image
 					style={this.props.style}
 					source={require('./comment.png')}
 				/>
-			</TouchableHighlight>
+			</TouchableOpacity>
 		)
 	}
 }
@@ -56,12 +56,12 @@ export class CommentButton extends React.Component {
 export class ShareButton extends React.Component {
 	render() {
 		return (
-			<TouchableHighlight onPress={this.props.onPress}>
+			<TouchableOpacity onPress={this.props.onPress}>
 				<Image
 					style={this.props.style}
 					source={require('./share.png')}
 				/>
-			</TouchableHighlight>
+			</TouchableOpacity>
 		)
 	}
 }
@@ -69,12 +69,12 @@ export class ShareButton extends React.Component {
 export class CartButton extends React.Component {
 	render() {
 		return (
-			<TouchableHighlight onPress={this.props.onPress}>
+			<TouchableOpacity onPress={this.props.onPress}>
 				<Image
 					style={this.props.style}
 					source={require('./cart.png')}
 				/>
-			</TouchableHighlight>
+			</TouchableOpacity>
 		)
 	}
 }

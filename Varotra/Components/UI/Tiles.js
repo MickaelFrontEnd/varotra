@@ -1,19 +1,27 @@
 import React from 'react'
 import { View, Image, StyleSheet, TouchableOpacity, Text } from 'react-native'
-import { LikeButton, CommentButton, ShareButton, CartButton } from './IconButton'
+import { LikeButton, LikedButton, CommentButton, ShareButton, CartButton } from './IconButton'
 
 class Tiles extends React.Component {
 
 	constructor(props) {
 		super(props)
 		this.state = {
-			showContent: false
+			showContent: false,
+			hasLiked: false
 		}
 	}
 
 	toggleControls = () => {
 		const showContent = this.state.showContent
 		this.setState({ showContent: !showContent })
+	}
+
+	like = () => {
+		this.props.onLike()
+		this.setState((previousState) => ({
+			hasLiked: !previousState.hasLiked
+		}))
 	}
 
 	render() {
@@ -25,7 +33,11 @@ class Tiles extends React.Component {
 						source={{ uri: this.props.visual }} />
 				</TouchableOpacity>
 				<View style={styles.controls}>
-					{this.props.showLike && <View style={styles.btnContainer}><LikeButton style={styles.btn} /></View>}
+					{this.props.showLike &&
+						<View style={styles.btnContainer}>
+							{ this.state.hasLiked ? <LikedButton onPress={this.like} style={styles.btn} /> : <LikeButton onPress={this.like} style={styles.btn} /> }
+						</View>
+					}
 					{this.props.showComment && <View style={styles.btnContainer}><CommentButton style={styles.btn} /></View>}
 					{this.props.showShare && <View style={styles.btnContainer}><ShareButton style={styles.btn} /></View>}
 					{this.props.showCart && <View style={styles.btnContainer}><CartButton style={styles.btn} /></View>}
@@ -63,9 +75,6 @@ const styles = StyleSheet.create({
 		height: 200,
 		resizeMode: "cover"
 	},
-	content: {
-		//paddingTop: 20
-	},	
 	controls: {
 		flex: 0,
 		flexDirection: "row",

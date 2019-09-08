@@ -6,90 +6,123 @@ import Tiles from './../UI/Tiles'
 import Section from './../UI/Section'
 import BannerTile from './../UI/BannerTile'
 import ViewMoreBtn from './../UI/ViewMoreBtn'
-import { HOME_PRODUCT } from './../Api/URL'
+import getData, { getUrl } from '../Api/Api'
+import Indicator from './../UI/Indicator'
+
 
 class HomeActivity extends React.Component {
 	constructor(props) {
 		super(props)
 		this.state = {
-			products: []
+			products: [],
+			suggestions: [],
+			articles: [],
+			brands: [],
+			shops: [],
+			loading: true,
+			pushedSuggestion: 0
 		}
 	}
 
 	render() {
 		return (
-			<Container>
-				<Navigation navigation={this.props.navigation} />
-				<ProductSuggestion />
-				<Section title="Nos produits" childrenContainer={{ flex: 0 }}>
-					{
-						this.state.products.map((value, index) => {
-							return (
+			this.state.loading ? <Indicator size="large" color="#000" /> :
+				<Container>
+					<Navigation navigation={this.props.navigation} />
+					<ProductSuggestion list={this.state.suggestions} pushed={this.state.pushedSuggestion} />
+					<Section title="Nos produits" childrenContainer={{ flex: 0 }}>
+						{
+							this.state.products.map((value, index) => (
+									<Tiles
+										key={index}
+										visual={value.photo}
+										showLike={true}
+										showComment={true}
+										showShare={true}
+										showCart={true}
+										title={value.designation}
+										description={value.description}
+										like={value.nombreJaime}
+										comments={value.commentaires}
+										onLike={this.getSuggestion}
+									/>
+								))
+						}
+						{
+							(this.state.products.length > 0) && <ViewMoreBtn />
+						}
+					</Section>
+					<Section title="Nos articles">
+						{
+							this.state.articles.map((value, index) => (
 								<Tiles
 									key={index}
 									visual={value.photo}
 									showLike={true}
 									showComment={true}
-									showShare={true}
-									showCart={true}
-									title={value.designation}
-									description={value.description}
-									like={value.nombreJaime}
-									comments={value.commentaires}
-								/>
-							)
-						})
-					}
-					{
-						(this.state.products.length > 0) && <ViewMoreBtn />
-					}
-				</Section>
-				<Section title="Nos articles">
-					<Tiles
-						visual="https://assets.pcmag.com/media/images/457973-apple-macbook-pro-15-inch-2017.jpg?width=810&height=456"
-						showLike={true}
-						showComment={true}
-						showShare={false}
-						showCart={false} />
-					<Tiles
-						visual="https://assets.pcmag.com/media/images/457973-apple-macbook-pro-15-inch-2017.jpg?width=810&height=456"
-						showLike={true}
-						showComment={true}
-						showShare={false}
-						showCart={false} />
-					<ViewMoreBtn />
-				</Section>
-				<Section title="Nos marques">
-					<BannerTile
-						visual="https://zdnet3.cbsistatic.com/hub/i/r/2019/08/05/b2e40423-7c4c-48b5-9c7a-ea7ee92f96fe/thumbnail/770x433/c0942922b4c437cffdac1b9d2b0fd7e6/13-inch-mbpro-header.jpg"
-						textual="Adidas" />
-					<BannerTile
-						visual="https://assets.pcmag.com/media/images/457973-apple-macbook-pro-15-inch-2017.jpg?width=810&height=456"
-						textual="Nike" />
-					<ViewMoreBtn />
-				</Section>
-				<Section title="Nos centres">
-					<BannerTile
-						visual="https://zdnet3.cbsistatic.com/hub/i/r/2019/08/05/b2e40423-7c4c-48b5-9c7a-ea7ee92f96fe/thumbnail/770x433/c0942922b4c437cffdac1b9d2b0fd7e6/13-inch-mbpro-header.jpg"
-						textual="Apple" />
-					<BannerTile
-						visual="https://assets.pcmag.com/media/images/457973-apple-macbook-pro-15-inch-2017.jpg?width=810&height=456"
-						textual="Microsoft" />
-					<ViewMoreBtn />
-				</Section>
-			</Container>
+									showShare={false}
+									showCart={false} />
+							))
+						}
+						{
+							(this.state.articles.length > 0) && <ViewMoreBtn />
+						}
+					</Section>
+					<Section title="Nos marques">
+						{
+							this.state.brands.map((value, index) => (
+								<BannerTile
+									key={index}
+									visual={value.photo}
+									textual={value.designation} />
+							))
+						}
+						{
+							(this.state.brands.length > 0) && <ViewMoreBtn />
+						}
+					</Section>
+					<Section title="Nos centres">
+						{
+							this.state.shops.map((value, index) => (
+								<BannerTile
+									key={index}
+									visual={value.photo}
+									textual={value.designation} />
+							))
+						}
+						{
+							(this.state.shops.length > 0) && <ViewMoreBtn />
+						}
+					</Section>
+				</Container>
 		);
 	}
 
-	componentDidMount() {
-		const products = this.getProduct()
-		products.then((data) => this.setState({ products: data.produits }))
+	async componentDidMount() {
+		const URL = await getUrl()
+		const products = await getData(URL.HOME_PRODUCT)
+		const suggestions = await getData(URL.HOME_SUGGESTION)
+		const articles = await getData(URL.HOME_ARTICLE)
+		const brands = await getData(URL.HOME_BRAND)
+		const shops = await getData(URL.HOME_SHOP)
+
+		this.setState({
+			products: products.produits,
+			suggestions: suggestions.suggestions,
+			articles: articles.articles,
+			brands: brands.marques,
+			shops: shops.centres,
+			loading: false
+		})
 	}
 
-	getProduct = () => {
-		return fetch(HOME_PRODUCT)
-			.then((response) => response.json())
-			.catch((error) => alert(error))
+	getSuggestion = async () => {
+		const URL = await getUrl()
+		const suggestions = await getData(URL.LIKE)
+		this.setState((previousState) => ({
+			suggestions: suggestions.suggestions.concat(previousState.suggestions),
+			pushedSuggestion: suggestions.suggestions.length
+		}))
 	}
 }
 

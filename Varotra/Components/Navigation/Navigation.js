@@ -87,7 +87,7 @@ export const CartNavigator = createStackNavigator({
 	Cart: {
 		screen: CartActivity,
 		navigationOptions: ({navigation}) => ({
-			title: 'Mes activités',
+			title: 'Mon panier',
 			headerLeft: <DrawerMenu navigation={navigation} />,
 			headerRight: <Search />
 		})
@@ -151,8 +151,6 @@ const CustomDrawer = (props) => (
 	</Container>
 )
 
-
-
 export const DrawerNavigator = createDrawerNavigator({
 	Home: {
 		screen: HomeNavigator,
@@ -190,7 +188,7 @@ export const DrawerNavigator = createDrawerNavigator({
 		})
 	}
 }, {
-	initialRouteName: 'Deconnexion',
+	initialRouteName: 'Cart',
 	contentComponent: CustomDrawer,
 	hideStatusBar: true,
 	contentOptions: {

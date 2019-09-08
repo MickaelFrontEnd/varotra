@@ -1,5 +1,5 @@
 import React from 'react'
-import { View, StyleSheet, Text, TextInput } from 'react-native'
+import { View, StyleSheet, Text, TextInput, AsyncStorage } from 'react-native'
 import Container from './../Hoc/Container'
 import StyledButton from '../UI/StyledButton'
 import ErrorText from './../UI/ErrorText'
@@ -25,8 +25,19 @@ class LoginActivity extends React.Component {
 			})
 		}
 		else {
-			this.props.navigation.navigate("Home")
+			if(this.userInput.username.includes('kevin')) {
+				this.storeUser()
+				.then(() => this.props.navigation.navigate("Home"))
+				.catch((error) => alert(error))
+			}
+			else {
+				this.props.navigation.navigate("Home")
+			}
 		}
+	}
+
+	storeUser() {
+		return AsyncStorage.setItem('userId', 'kevin')
 	}
 
 	onUsernameChange = text => {
