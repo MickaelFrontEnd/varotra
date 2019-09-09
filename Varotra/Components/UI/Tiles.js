@@ -1,6 +1,7 @@
 import React from 'react'
-import { View, Image, StyleSheet, TouchableOpacity, Text, TextInput } from 'react-native'
+import { View, Image, StyleSheet, TouchableOpacity, Text, TextInput, Alert } from 'react-native'
 import { LikeButton, LikedButton, CommentButton, ShareButton, CartButton, SendButton } from './IconButton'
+import Toast from 'react-native-root-toast'
 
 class Tiles extends React.Component {
 
@@ -53,6 +54,15 @@ class Tiles extends React.Component {
 		this.comment = text
 	}
 
+	share = () => {
+		Alert.prompt("Saisissez l'addresse email de l'utilisateur", null, (_) => {
+			Toast.show("Produit partagé",{
+				duration: Toast.durations.SHORT,
+				position: 100
+			})
+		})
+	}
+
 	render() {
 		return (
 			<View style={styles.container}>
@@ -68,7 +78,7 @@ class Tiles extends React.Component {
 						</View>
 					}
 					{this.props.showComment && <View style={styles.btnContainer}><CommentButton style={styles.btn} /></View>}
-					{this.props.showShare && <View style={styles.btnContainer}><ShareButton style={styles.btn} /></View>}
+					{this.props.showShare && <View style={styles.btnContainer}><ShareButton onPress={this.share} style={styles.btn} /></View>}
 					{this.props.showCart && <View style={styles.btnContainer}><CartButton style={styles.btn} /></View>}
 				</View>
 				{
