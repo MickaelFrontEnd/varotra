@@ -11,6 +11,7 @@ import ActivityActivity from './../Pages/ActivityActivity'
 import CartActivity from './../Pages/CartActivity'
 import NotificationActivity from './../Pages/NotificationActivity'
 import LoginActivity from './../Pages/LoginActivity'
+import SearchResultActivity from './../Pages/SearchResultActivity'
 import DrawerMenu from './../UI/DrawerMenu'
 import { Container, Header, Body, Content } from 'native-base'
 import { Image, Text } from 'react-native'
@@ -27,7 +28,7 @@ export const HomeNavigator = createStackNavigator({
 		navigationOptions: ({ navigation }) => ({
 			title: 'Accueil',
 			headerLeft: <DrawerMenu navigation={navigation} />,
-			headerRight: <Search />
+			headerRight: <Search navigation={navigation} />
 		})
 	}
 })
@@ -38,7 +39,7 @@ export const ProductNavigator = createStackNavigator({
 		navigationOptions: ({ navigation }) => ({
 			title: 'Nos produits',
 			headerLeft: <DrawerMenu navigation={navigation} />,
-			headerRight: <Search />
+			headerRight: <Search navigation={navigation} />
 		})
 	}
 })
@@ -49,7 +50,7 @@ export const ArticleNavigator = createStackNavigator({
 		navigationOptions: ({ navigation }) => ({
 			title: 'Nos articles',
 			headerLeft: <DrawerMenu navigation={navigation} />,
-			headerRight: <Search />
+			headerRight: <Search navigation={navigation} />
 		})
 	}
 })
@@ -60,7 +61,7 @@ export const BrandNavigator = createStackNavigator({
 		navigationOptions: ({ navigation }) => ({
 			title: 'Nos marques',
 			headerLeft: <DrawerMenu navigation={navigation} />,
-			headerRight: <Search />
+			headerRight: <Search navigation={navigation} />
 		})
 	}
 })
@@ -71,7 +72,7 @@ export const ShopNavigator = createStackNavigator({
 		navigationOptions: ({ navigation }) => ({
 			title: 'Nos centres',
 			headerLeft: <DrawerMenu navigation={navigation} />,
-			headerRight: <Search />
+			headerRight: <Search navigation={navigation} />
 		})
 	}
 })
@@ -82,7 +83,7 @@ export const ActivityNavigator = createStackNavigator({
 		navigationOptions: ({ navigation }) => ({
 			title: 'Mes activités',
 			headerLeft: <DrawerMenu navigation={navigation} />,
-			headerRight: <Search />
+			headerRight: <Search navigation={navigation} />
 		})
 	}
 })
@@ -93,7 +94,7 @@ export const CartNavigator = createStackNavigator({
 		navigationOptions: ({ navigation }) => ({
 			title: 'Mon panier',
 			headerLeft: <DrawerMenu navigation={navigation} />,
-			headerRight: <Search />
+			headerRight: <Search navigation={navigation} />
 		})
 	}
 })
@@ -104,7 +105,7 @@ export const NotificationNavigator = createStackNavigator({
 		navigationOptions: ({ navigation }) => ({
 			title: 'Notifications',
 			headerLeft: <DrawerMenu navigation={navigation} />,
-			headerRight: <Search />
+			headerRight: <Search navigation={navigation} />
 		})
 	}
 })
@@ -117,9 +118,19 @@ export const LoginNavigator = createStackNavigator({
 			headerLeft: null,
 			headerRight: null
 		})
-	}},{
-		headerMode: "none"
-	})
+	}
+},{ headerMode: "none" })
+
+export const SearchResultNavigator = createStackNavigator({
+	Login: {
+		screen: SearchResultActivity,
+		navigationOptions: ({navigation}) => ({
+			title: 'Résultat de recherche',
+			headerLeft: <DrawerMenu navigation={navigation} />,
+			headerRight: <Search navigation={navigation} />
+		})
+	}
+})
 
 const CustomDrawer = (props) => (
 	<Container>
@@ -187,7 +198,13 @@ export const DrawerNavigator = createDrawerNavigator({
 			drawerLabel: <EmptyComponent />
 		})
 	},
-	Activity: {  
+	SearchResult: {
+		screen: SearchResultNavigator,
+		navigationOptions: () => ({
+			drawerLabel: <EmptyComponent />
+		})
+	},
+	Activity: {
 		screen: ActivityNavigator,
 		navigationOptions: () => ({
 			drawerLabel: 'Mes activités',
@@ -216,7 +233,7 @@ export const DrawerNavigator = createDrawerNavigator({
 		})
 	}
 }, {
-		initialRouteName: 'Notification',
+		initialRouteName: 'Home',
 		contentComponent: CustomDrawer,
 		hideStatusBar: true,
 		contentOptions: {

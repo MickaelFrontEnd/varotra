@@ -23,6 +23,8 @@ export async function getUrl() {
 				NOTIFICATION_NOTIFICATION: `${BASE_URL_2}/Menu/Notifications/user2`,
 				LIKE: `${BASE_URL_1}/Globals/Jaime/user1`,
 				CART: `${BASE_URL_2}/Menu/Paniers/user1`,
+				AUTOCOMPLETE: `${BASE_URL_2}/Global/Recherche/autoComplete`,
+				SEARCH: `${BASE_URL_2}/Global/Recherche/getResult`
 			}
 		}
 	}
