@@ -28,6 +28,19 @@ export class LikeButton extends React.Component {
 	}
 }
 
+export class SendButton extends React.Component {
+	render() {
+		return (
+			<TouchableOpacity onPress={this.props.onPress}>
+				<Image
+					style={this.props.style}
+					source={require('./send.png')}
+				/>
+			</TouchableOpacity>
+		)
+	}
+}
+
 export class LikedButton extends React.Component {
 	render() {
 		return (

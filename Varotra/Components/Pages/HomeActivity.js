@@ -6,7 +6,7 @@ import Tiles from './../UI/Tiles'
 import Section from './../UI/Section'
 import BannerTile from './../UI/BannerTile'
 import ViewMoreBtn from './../UI/ViewMoreBtn'
-import getData, { getUrl } from '../Api/Api'
+import getData, { getUrl, getUserInfo } from '../Api/Api'
 import Indicator from './../UI/Indicator'
 
 
@@ -26,7 +26,7 @@ class HomeActivity extends React.Component {
 			loading: true,
 			pushedSuggestion: 0
 		}
-		this.likeCount = 1
+		this.likeCount = 0
 	}
 
 	getProduct = () => {
@@ -54,6 +54,8 @@ class HomeActivity extends React.Component {
 									title={value.designation}
 									description={value.description}
 									like={value.nombreJaime}
+									price={value.prix}
+									note={value.note}
 									comments={value.commentaires}
 									onLike={this.getSuggestion}
 								/>
@@ -132,7 +134,9 @@ class HomeActivity extends React.Component {
 		this.likeCount++
 		const URL = await getUrl()
 		const suggestions = await getData(URL.LIKE)
-		if (this.likeCount === 3) {
+		const userInfo = await getUserInfo()
+		const total = userInfo.includes('Kevin') ? 3 : 1
+		if (this.likeCount === total) {
 			setTimeout(() => {
 				this.setState((previousState) => ({
 					suggestions: suggestions.suggestions.concat(previousState.suggestions),

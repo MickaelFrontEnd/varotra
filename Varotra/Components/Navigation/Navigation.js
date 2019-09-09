@@ -225,7 +225,7 @@ export const DrawerNavigator = createDrawerNavigator({
 			drawerIcon: () => <Ionicons name="md-notifications" size={24} />
 		})
 	},
-	Deconnexion: {
+	Login: {
 		screen: LoginNavigator,
 		navigationOptions: () => ({
 			drawerLabel: 'Déconnexion',
@@ -239,7 +239,8 @@ export const DrawerNavigator = createDrawerNavigator({
 		contentOptions: {
 			activeTintColor: "white",
 			activeBackgroundColor: "#5BD3B4"
-		}
+		},
+		unmountInactiveRoutes: true
 	})
 
 export default createAppContainer(DrawerNavigator)

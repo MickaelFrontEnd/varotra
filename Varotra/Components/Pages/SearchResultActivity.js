@@ -44,7 +44,6 @@ class SearchResultActivity extends React.Component {
 								description={value.description}
 								like={value.nombreJaime}
 								comments={value.commentaires}
-								onLike={this.getSuggestion}
 							/>
 						))
 					}

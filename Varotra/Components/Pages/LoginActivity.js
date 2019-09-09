@@ -26,18 +26,24 @@ class LoginActivity extends React.Component {
 		}
 		else {
 			if(this.userInput.username.includes('kevin')) {
-				this.storeUser()
+				this.storeUser('kevin')
 				.then(() => this.props.navigation.navigate("Home"))
 				.catch((error) => alert(error))
 			}
 			else {
-				this.props.navigation.navigate("Home")
+				this.storeUser('santa')
+				.then(() => this.props.navigation.navigate("Home"))
+				.catch((error) => alert(error))
 			}
 		}
 	}
 
-	storeUser() {
-		return AsyncStorage.setItem('userId', 'kevin')
+	storeUser(user) {
+		return AsyncStorage.setItem('userId', user)
+	}
+
+	deleteUser() {
+		return AsyncStorage.removeItem('userId')
 	}
 
 	onUsernameChange = text => {
