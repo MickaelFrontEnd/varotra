@@ -20,6 +20,7 @@ export async function getUrl() {
 				SHOP_SHOP: `${BASE_URL_1}/Global/Centres/user`,
 				SHOP_SUGGESTION: `${BASE_URL_1}/Home/Suggestions/user1`,
 				ACTIVITY_ACTIVITY: `${BASE_URL_1}/Menu/Activites/user1`,
+				NOTIFICATION_NOTIFICATION: `${BASE_URL_2}/Menu/Notifications/user2`,
 				LIKE: `${BASE_URL_1}/Globals/Jaime/user1`,
 				CART: `${BASE_URL_2}/Menu/Paniers/user1`,
 			}

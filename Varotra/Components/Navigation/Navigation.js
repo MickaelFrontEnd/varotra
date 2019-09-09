@@ -102,7 +102,7 @@ export const NotificationNavigator = createStackNavigator({
 	Notification: {
 		screen: NotificationActivity,
 		navigationOptions: ({ navigation }) => ({
-			title: 'Mes activités',
+			title: 'Notifications',
 			headerLeft: <DrawerMenu navigation={navigation} />,
 			headerRight: <Search />
 		})
@@ -139,7 +139,7 @@ const CustomDrawer = (props) => (
 				<Text style={{
 					fontSize: 25,
 					marginBottom: 10
-				}}>Jonathan Kevin</Text>
+				}}>Kevin Jonathan </Text>
 				<Text style={{
 					textDecorationLine: "underline",
 					color: "#1A73E8",
@@ -216,7 +216,7 @@ export const DrawerNavigator = createDrawerNavigator({
 		})
 	}
 }, {
-		initialRouteName: 'Activity',
+		initialRouteName: 'Notification',
 		contentComponent: CustomDrawer,
 		hideStatusBar: true,
 		contentOptions: {
