@@ -80,9 +80,9 @@ export class CartButton extends React.Component {
 	}
 
 	addToCart = () => {
-		Toast.show("Achat effectué avec succès",{
+		Toast.show("Le produit a été ajouté dans votre panier",{
 			duration: Toast.durations.SHORT,
-			position: Toast.positions.TOP
+			position: 100
 		})
 	}
 }

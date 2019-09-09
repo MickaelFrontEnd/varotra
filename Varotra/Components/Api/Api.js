@@ -9,18 +9,19 @@ export async function getUrl() {
 			return {
 				HOME_SUGGESTION: `${BASE_URL_1}/Home/Suggestions/user1`,
 				HOME_PRODUCT: `${BASE_URL_1}/Home/Produits/user1`,
-				HOME_ARTICLE: `${BASE_URL_1}/Home/Articles/user1`,
-				HOME_BRAND: `${BASE_URL_1}/Home/Marques/user1`,
-				HOME_SHOP: `${BASE_URL_1}/Home/Centres/user1`,
+				HOME_ARTICLE: `${BASE_URL_1}/Global/Articles/user`,
+				HOME_BRAND: `${BASE_URL_1}/Global/Marques/user`,
+				HOME_SHOP: `${BASE_URL_1}/Global/Centres/user`,
 				PRODUCT_SUGGESTION: `${BASE_URL_1}/Produit/Suggestions/user1`,
 				PRODUCT_PRODUCT: `${BASE_URL_1}/Produit/Produits/user1`,
-				ARTICLE_ARTICLE: `${BASE_URL_1}/Article/Articles/user1`,
+				ARTICLE_ARTICLE: `${BASE_URL_1}/Global/Articles/user`,
 				BRAND_SUGGESTION: `${BASE_URL_1}/Marque/Suggestions/user1`,
-				BRAND_BRAND: `${BASE_URL_1}/Home/Marques/user1`,
-				SHOP_SHOP: `${BASE_URL_1}/Home/Centres/user1`,
+				BRAND_BRAND: `${BASE_URL_1}/Global/Marques/user`,
+				SHOP_SHOP: `${BASE_URL_1}/Global/Centres/user`,
 				SHOP_SUGGESTION: `${BASE_URL_1}/Home/Suggestions/user1`,
+				ACTIVITY_ACTIVITY: `${BASE_URL_1}/Menu/Activites/user1`,
 				LIKE: `${BASE_URL_1}/Globals/Jaime/user1`,
-				CART: `${BASE_URL_2}/Menu/Paniers/user2`,
+				CART: `${BASE_URL_2}/Menu/Paniers/user1`,
 			}
 		}
 	}

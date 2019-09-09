@@ -21,9 +21,9 @@ class CartActivity extends React.Component {
 	}
 
 	purschased = () => {
-		Toast.show("Le produit a été ajouté dans votre panier",{
+		Toast.show("Achat effectué avec succès",{
 			duration: Toast.durations.SHORT,
-			position: Toast.positions.TOP
+			position: 100
 		})
 	}
 
@@ -55,7 +55,7 @@ class CartActivity extends React.Component {
 							<CartItem
 								key={index}
 								visual={value.photo}
-								designation={value.designation}
+								designation={value.designation.substring(0,14) + '...'}
 								quantity={value.quantite}
 								unitPrice={value.prix}
 								totalPrice={value.prixTotal}

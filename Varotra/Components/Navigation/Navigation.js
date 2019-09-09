@@ -216,7 +216,7 @@ export const DrawerNavigator = createDrawerNavigator({
 		})
 	}
 }, {
-		initialRouteName: 'Cart',
+		initialRouteName: 'Activity',
 		contentComponent: CustomDrawer,
 		hideStatusBar: true,
 		contentOptions: {
