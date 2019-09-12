@@ -4,7 +4,7 @@ import StyledButton from './StyledButton'
 
 class Navigation extends React.PureComponent {
 
-	LINK = ["Accueil","Produit","Article","Marque","Centre"]
+	LINK = ["Accueil","Produit","Article","Marque","Centre commercial"]
 	SCREEN = ["Home", "Product", "Article", "Brand", "Shop"]
 
 	constructor(props) {
@@ -17,13 +17,15 @@ class Navigation extends React.PureComponent {
 
 	render(){
 		const link = this.LINK.map((value, index) => {
-			const style = this.props.navigation.state.routeName === this.SCREEN[index] ? [styles.btn, styles.btnActive] : styles.btn
+			const active = this.props.navigation.state.routeName === this.SCREEN[index]
+			const style = active ? [styles.btn, styles.btnActive] : styles.btn
+			const color = active ? "#FFF" : "black" 
 			return <StyledButton 
 				key={index} 
 				title={value} 
 				style={style} 
 				onPress={() => this.navigate(this.SCREEN[index], index)}
-				color="white" />
+				color={color} />
 		});
 		return (
 			<ScrollView contentContainerStyle={styles.container} horizontal={true} indicatorStyle="white">
@@ -39,14 +41,25 @@ const styles = StyleSheet.create({
 		marginBottom: 20
 	},
 	btn: {
-		backgroundColor: "#5BD3B4",
+		backgroundColor: "#F7F5F6",
+		borderColor: "#F7F5F6",
+		borderWidth: 1,
 		borderRadius: 10,
 		marginLeft: 5,
 		marginRight: 5,
-		width: 80
+		paddingLeft:10,
+		paddingRight: 10,
+		shadowColor: "#000",
+		shadowOffset: {
+			width: 2,
+			height: 2
+		},
+		shadowOpacity: 0.25,
+		shadowRadius: 3.84,
+		elevation: 16,
 	},
 	btnActive: {
-		backgroundColor: "#474457"
+		backgroundColor: "#000"
 	}
 })
 

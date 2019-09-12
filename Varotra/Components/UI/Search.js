@@ -1,6 +1,5 @@
 import React from 'react'
-import { View, StyleSheet, Image, Text } from 'react-native'
-import { TouchableOpacity } from 'react-native-gesture-handler'
+import { View, StyleSheet, Image, Text, TouchableOpacity } from 'react-native'
 import Autocomplete from 'react-native-autocomplete-input'
 import getData, { getUrl } from '../Api/Api'
 

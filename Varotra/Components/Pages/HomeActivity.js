@@ -135,7 +135,7 @@ class HomeActivity extends React.Component {
 		const URL = await getUrl()
 		const suggestions = await getData(URL.LIKE)
 		const userInfo = await getUserInfo()
-		const total = userInfo.includes('Kevin') ? 3 : 1
+		const total = userInfo.name.includes('Kevin') ? 3 : 1
 		if (this.likeCount === total) {
 			setTimeout(() => {
 				this.setState((previousState) => ({

@@ -10,7 +10,7 @@ class ViewMoreBtn extends React.Component {
 					onPress={this.props.onPress}
 					title="Voir plus..."
 					style={styles.viewMore}
-					color="white" />
+					color="#000" />
 			</View>
 		)
 	}
@@ -21,12 +21,20 @@ const styles = StyleSheet.create({
 		flex: 0,
 		marginLeft: "auto",
 		marginRight: "auto",
-		backgroundColor: "#f1c40f",
+		backgroundColor: "#F7F5F6",
 		borderRadius: 10,
 		paddingTop: 5,
 		paddingLeft: 20,
 		paddingRight: 20,
-		paddingBottom: 5
+		paddingBottom: 5,
+		shadowColor: "#000",
+		shadowOffset: {
+			width: 0,
+			height: 4
+		},
+		shadowOpacity: 0.5,
+		shadowRadius: 5,
+		elevation: 16,
 	}
 })
 

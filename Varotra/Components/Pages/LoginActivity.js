@@ -42,10 +42,6 @@ class LoginActivity extends React.Component {
 		return AsyncStorage.setItem('userId', user)
 	}
 
-	deleteUser() {
-		return AsyncStorage.removeItem('userId')
-	}
-
 	onUsernameChange = text => {
 		this.userInput.username = text
 		this.setState({ usernameRequired: this.userInput.username === '' })
